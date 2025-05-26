@@ -1,0 +1,144 @@
+#include<iostream.h>
+#include<conio.h>
+#include<dos.h>
+#include<stdlib.h>
+#include<time.h>
+void basic(){
+clrscr();
+for(int i=0;i<10;i++){
+cout<<"   ";
+}
+cout<<"Snake and Ladders"<<endl;
+}
+void space(int s){
+for(int o=0;o<s;o++){
+cout<<"   ";
+}
+}
+int main(){
+clrscr();
+int p01=0;
+int p02=0;
+int temp=0;
+int h1=0;
+int h2=0;
+int control=1;
+int choose=0;
+char tiles[100],quit;
+srand(time(0));
+basic();
+space(8);
+cout<<"Welcome to snake and ladders"<<endl;
+space(9);
+cout<<"press  any key to enter "<<endl;
+getch();
+clrscr();
+while(control==1){
+basic();
+temp=((rand()%6)+1);
+
+if(p01==99 && temp==1){
+space(8);
+cout<<"Player  1 got 1"<<endl;
+space(8);
+cout<<"Player 1 win";
+getch();
+control=0;
+}
+if(p02==99 && temp==1){
+space(8);
+cout<<"Player  2 got 1"<<endl;
+space(8);
+cout<<"Player 2 win";
+getch();
+control=0;
+}
+if(choose==1){
+cout<<"Player 2 turn"<<endl;
+cout<<"press any key to roll dice"<<endl;
+getch();
+cout<<"....Rolling dice...."<<endl;
+delay(1000);
+cout<<"Player 2 got "<<temp<<endl;
+p02=p02+temp;
+if(p02>=99){
+p02=99;
+}
+choose--;
+}else{
+cout<<"Player 1 turn"<<endl;
+cout<<"press any key to roll die"<<endl;
+getch();
+cout<<"....Rolling dice...."<<endl;
+delay(1000);
+cout<<"Player 1 got "<<temp<<endl;
+p01=p01+temp;
+if(p01>=99){
+p01=99;
+}
+choose++;
+}
+
+if(p01==7||p01==35||p01==56||p01==70){
+cout<<"Player 1 got ladder +7"<<endl;
+}
+if(p02==7||p02==35||p02==56||p02==70){
+cout<<"Player 2 got ladder +7"<<endl;
+}
+if(p01==10||p01==21||p01==40||p01==82||p01==95){
+cout<<"Player 1 bite by snake -5"<<endl;
+}
+if(p02==10||p02==21||p02==40||p02==82||p02==95){
+cout<<"Player 2 bite by snake -5"<<endl;
+}
+for(int i=100;i>0;i--){
+if(i%10==0){
+cout<<endl;
+for(int j=0;j<=38;j++){
+cout<<"-";
+}
+cout<<endl;
+}
+tiles[i]=' ';
+if(i==7||i==35||i==56||i==70){
+tiles[i]='#';
+}
+if(i==10||i==21||i==40||i==82||i==95){
+tiles[i]='S';
+}
+
+if(i==p01){
+tiles[i]='1';
+}
+if(i==p02){
+tiles[i]='2';
+}
+if(p01==7||p01==35||p01==56||p01==70){
+p01=p01+7;
+}
+if(p02==7||p02==35||p02==56||p02==70){
+p02=p02+7;
+}
+if(p01==10||p01==21||p01==40||p01==82||p01==95){
+p01=p01-5;
+}
+if(p02==10||p02==21||p02==40||p02==82||p02==95){
+p02=p02-5;
+}
+
+
+cout<<tiles[i]<<" | ";
+
+}
+quit=getch();
+if(quit=='q'){
+control=0;
+}
+}
+if(quit=='q'){
+space(8);
+cout<<"\nclick any key to leave the game";
+}
+getch();
+return 0;
+}
